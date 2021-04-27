@@ -55,14 +55,17 @@ class ViewController: UIViewController {
         
     }
     @IBAction func backPressed(_ sender: RoundButton) {
-        currentNumber = outputLabel.text!
-        currentNumber.remove(at: currentNumber.index(before: currentNumber.endIndex))
-        outputLabel.text = currentNumber
+        if let currentNum = outputLabel.text{
+            currentNumber = currentNum
+            currentNumber.remove(at: currentNumber.index(before: currentNumber.endIndex))
+            outputLabel.text = currentNumber
+        }
+        
     }
     
     @IBAction func equalPressed(_ sender: RoundButton) {
         calculate(operation: currentOperation)
-        currentOperation = .NULL
+//        currentOperation = .NULL
     }
     @IBAction func addPressed(_ sender: RoundButton) {
         calculate(operation: .Add)
@@ -83,21 +86,30 @@ class ViewController: UIViewController {
             if currentNumber != ""{
                 rightOperand = currentNumber
                 currentNumber = ""
+                if let leftValue = Double(leftOperand){
+                    if let rightValue = Double(rightOperand){
+                        switch currentOperation{
+                        case .Add : result = "\(leftValue + rightValue)"
+                        case .Sub : result = "\(leftValue - rightValue)"
+                        case .Multiply : result = "\(leftValue * rightValue)"
+                        case .Divide : result = "\(leftValue / rightValue)"
+                        default: break
+                        }
+                       
+                        leftOperand = result
+                        
+                        if let unwrappedResult = Double(result){
+                            if unwrappedResult.truncatingRemainder(dividingBy: 1) == 0{
+                                result = "\(Int(unwrappedResult))"
+                            }
+                        }
+
+                        outputLabel.text = result
+                    }
+                }
                 
-                if currentOperation == .Add{
-                    result = "\(Double(leftOperand)! + Double(rightOperand)!)"
-                }else if currentOperation == .Sub{
-                    result = "\(Double(leftOperand)! - Double(rightOperand)!)"
-                }else if currentOperation == .Multiply{
-                    result = "\(Double(leftOperand)! * Double(rightOperand)!)"
-                }else if currentOperation == .Divide{
-                    result = "\(Double(leftOperand)! / Double(rightOperand)!)"
-                }
-                leftOperand = result
-                if(Double(result)!.truncatingRemainder(dividingBy: 1) == 0){
-                    result = "\(Int(Double(result)!))"
-                }
-                outputLabel.text = result
+                
+               
             }
             currentOperation = operation
         }else{
