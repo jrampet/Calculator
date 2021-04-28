@@ -72,7 +72,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsl-bW-PZ2" customClass="RoundButton" customModule="Calculator" customModuleProvider="target">
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsl-bW-PZ2" customClass="RoundButton" customModule="Calculator" customModuleProvider="target">
                                                 <rect key="frame" x="270" y="0.0" width="80" height="80"/>
                                                 <color key="backgroundColor" red="0.93803542849999999" green="0.60531347989999995" blue="0.2194662392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -87,7 +87,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="divPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xZO-dF-mmV"/>
+                                                    <action selector="operatorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JRg-02-42W"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -152,7 +152,7 @@
                                                     <action selector="numberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1k5-7x-kj4"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0M-Hg-ONa" customClass="RoundButton" customModule="Calculator" customModuleProvider="target">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0M-Hg-ONa" customClass="RoundButton" customModule="Calculator" customModuleProvider="target">
                                                 <rect key="frame" x="270" y="0.0" width="80" height="80"/>
                                                 <color key="backgroundColor" red="0.93803542849999999" green="0.60531347989999995" blue="0.2194662392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -167,7 +167,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="multiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sg2-Vp-iRM"/>
+                                                    <action selector="operatorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K0l-BF-LQw"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -232,7 +232,7 @@
                                                     <action selector="numberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tF9-g4-daJ"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WjW-WV-iZF" customClass="RoundButton" customModule="Calculator" customModuleProvider="target">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WjW-WV-iZF" customClass="RoundButton" customModule="Calculator" customModuleProvider="target">
                                                 <rect key="frame" x="270" y="0.0" width="80" height="80"/>
                                                 <color key="backgroundColor" red="0.93803542849999999" green="0.60531347989999995" blue="0.2194662392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -247,7 +247,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="subPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pSe-TW-iF8"/>
+                                                    <action selector="operatorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SJf-RZ-VJ6"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -327,7 +327,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="addPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HOX-d9-E0G"/>
+                                                    <action selector="operatorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F9G-h9-32z"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -471,6 +471,9 @@
             <size key="intrinsicContentSize" width="30" height="53"/>
         </designable>
         <designable name="hMJ-30-Chh">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="nDr-7M-c7g">
             <size key="intrinsicContentSize" width="30" height="53"/>
         </designable>
         <designable name="t9O-nH-VGq">

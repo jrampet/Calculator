@@ -11,7 +11,7 @@ enum Operation:String{
     case Sub = "-"
     case Divide = "/"
     case Multiply = "*"
-    case NULL = "NIL"
+    case equal = "equal"
 }
 class ViewController: UIViewController {
 
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     var leftOperand = ""
     var rightOperand = ""
     var result = ""
-    var currentOperation:Operation = .NULL
+    var currentOperation:Operation = .equal
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         leftOperand = ""
         rightOperand = ""
         result = ""
-        currentOperation = .NULL
+        currentOperation = .equal
         outputLabel.text = "0"
     }
     @IBAction func dotPressed(_ sender: RoundButton) {
@@ -57,64 +57,70 @@ class ViewController: UIViewController {
     @IBAction func backPressed(_ sender: RoundButton) {
         if let currentNum = outputLabel.text{
             currentNumber = currentNum
-            currentNumber.remove(at: currentNumber.index(before: currentNumber.endIndex))
-            outputLabel.text = currentNumber
+            if currentNum.count == 1{
+                currentNumber = ""
+                outputLabel.text = "0"
+            }else{
+                currentNumber.remove(at: currentNumber.index(before: currentNumber.endIndex))
+                outputLabel.text = currentNumber
+            }
+            
+           
         }
         
     }
     
     @IBAction func equalPressed(_ sender: RoundButton) {
         calculate(operation: currentOperation)
-//        currentOperation = .NULL
-    }
-    @IBAction func addPressed(_ sender: RoundButton) {
-        calculate(operation: .Add)
-    }
-    @IBAction func subPressed(_ sender: RoundButton) {
-        calculate(operation: .Sub)
+        currentOperation = .equal
+        
     }
     
-    @IBAction func multiPressed(_ sender: RoundButton) {
-        calculate(operation: .Multiply)
-    }
-    @IBAction func divPressed(_ sender: RoundButton) {
-        calculate(operation: .Divide)
+    @IBAction func operatorPressed(_ sender: RoundButton) {
+        if currentOperation == .equal{
+            currentNumber = outputLabel.text!
+        }
+        let operatorPress = sender.tag
+        switch  operatorPress {
+        case 0: calculate(operation: .Add)
+        case 1: calculate(operation: .Sub)
+        case 2: calculate(operation: .Multiply)
+        case 3: calculate(operation: .Divide)
+        default:
+            break
+        }
     }
     
     func calculate(operation: Operation){
-        if currentOperation != .NULL{
-            if currentNumber != ""{
-                rightOperand = currentNumber
-                currentNumber = ""
-                if let leftValue = Double(leftOperand){
-                    if let rightValue = Double(rightOperand){
-                        switch currentOperation{
-                        case .Add : result = "\(leftValue + rightValue)"
-                        case .Sub : result = "\(leftValue - rightValue)"
-                        case .Multiply : result = "\(leftValue * rightValue)"
-                        case .Divide : result = "\(leftValue / rightValue)"
-                        default: break
-                        }
-                       
-                        leftOperand = result
-                        
-                        if let unwrappedResult = Double(result){
-                            if unwrappedResult.truncatingRemainder(dividingBy: 1) == 0{
-                                result = "\(Int(unwrappedResult))"
-                            }
-                        }
-
-                        outputLabel.text = result
-                    }
-                }
-                
-                
-               
+        if currentOperation != .equal{
+            guard !currentNumber.isEmpty else {
+                return
             }
+            rightOperand = currentNumber
+            currentNumber = ""
+            guard let leftValue = Double(leftOperand), let rightValue = Double(rightOperand) else {
+                return
+            }
+            
+            switch currentOperation{
+            case .Add : result = "\(leftValue + rightValue)"
+            case .Sub : result = "\(leftValue - rightValue)"
+            case .Multiply : result = "\(leftValue * rightValue)"
+            case .Divide : result = "\(leftValue / rightValue)"
+            default: break
+            }
+            
+            leftOperand = result
+            
+            if let unwrappedResult = Double(result), unwrappedResult.truncatingRemainder(dividingBy: 1) == 0{
+                result = "\(Int(unwrappedResult))"
+            }
+            outputLabel.text = result
             currentOperation = operation
+            
         }else{
             leftOperand = currentNumber
-            currentNumber = ""
+                currentNumber = ""
             currentOperation = operation
         }
         
